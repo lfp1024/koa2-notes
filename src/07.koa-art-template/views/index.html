@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>LFP-Document</title>
+    <!-- IMPORT CSS -->
+
+</head>
+
+<body>
+    这是一个 art-template 的模板引擎
+
+    <h2>绑定数据</h2>
+    <h2><%=title%>---<%=info%></h2>
+    <br />
+    <hr />
+    <br />
+
+    <h2>绑定html数据</h2>
+    <%=list.h%>
+
+    <%-list.h%>
+    <br />
+    <hr />
+    <br />
+
+    <h2>条件</h2>
+    <%if(num>10){%>
+
+    num大于10
+    <%}else{ %>
+
+    num小于10
+    <%}%>
+    <br/>
+    <hr/>
+    <br/>
+
+    <h2>循环数据</h2>
+
+    <ul>
+        <%for(var i=0;i<list.data.length;i++){%>
+            <li><%=list.data[i]%></li>
+        <%}%>
+    </ul>
+
+    <br/>
+    <hr/>
+    <br/>
+
+
+    <!-- 引入外部模板，测试结果 加-和不加-都能引入 -->
+    <%-include('./public/footer.html')%>
+</body>
+
+</html>
