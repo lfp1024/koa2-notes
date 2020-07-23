@@ -1,13 +1,13 @@
-const Koa = require("koa")
-const Router = require("koa-router")
-const views = require("koa-views")
-const static = require("koa-static")
+const Koa = require('koa')
+const Router = require('koa-router')
+const views = require('koa-views')
+const serve = require('koa-static')
 
 const app = new Koa()
-const router = new Router({ prefix: "/static" })
+const router = new Router({ prefix: '/static' })
 
 app.use(views('views', {
-    extension: "ejs"
+  extension: 'ejs'
 }))
 
 // 配置静态资源中间件（静态web服务中间件）（托管静态资源）
@@ -19,16 +19,16 @@ app.use(views('views', {
 // app.use(static("static"))
 
 // 绝对路径
-app.use(static(__dirname + "/static"))
+app.use(serve(`${__dirname}/static`))
 
 // 可以配置多个
 // 上一个静态资源根目录中没找到，则继续在第二个静态资源根目录下查找
-app.use(static("public"))
+app.use(serve('public'))
 
-router.get("/", async ctx => {
-    await ctx.render("index")
+router.get('/', async (ctx) => {
+  await ctx.render('index')
 })
 
 app
-    .use(router.routes())
-    .listen(3000, () => { console.log("listening on port 3000") })
+  .use(router.routes())
+  .listen(3000, () => { console.log('listening on port 3000') })
