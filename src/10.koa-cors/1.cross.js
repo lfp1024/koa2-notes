@@ -9,14 +9,14 @@ app.use((ctx, next) => {
   const res = ctx.response
   console.log('res = ', res, ' req = ', req)
 
-  const whiteList = ['http://localhost:5500', 'http://localhost:3001']
+  const whitelist = ['http://127.0.0.1:5500', 'http://192.168.200.2:3001']
   const reqOrigin = req.header.origin
   console.log('req origin:', reqOrigin)
   let allowOrigin = '*'
   // localhost !== 127.0.0.1
-  if (whiteList.includes(reqOrigin)) {
+  if (whitelist.includes(reqOrigin)) {
     allowOrigin = reqOrigin
-    console.log('white list origin:', reqOrigin)
+    console.log('reqOrigin in whitelist')
   }
 
   res.set('Access-Control-Allow-Origin', allowOrigin)
