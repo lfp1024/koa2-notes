@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/lfp1024/koa2-notes#readme",
   "dependencies": {
+    "@koa/cors": "^3.1.0",
     "art-template": "^4.13.2",
     "debug": "^4.1.1",
     "ejs": "^3.1.3",
