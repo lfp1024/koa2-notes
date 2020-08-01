@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>LFP-Document</title>
+  <!-- IMPORT CSS -->
+
+</head>
+
+<body>
+  <!-- IMPORT JS -->
+  <script>
+    let xhr = new XMLHttpRequest
+    xhr.open('get', 'http://localhost:3000/cross/list')
+    xhr.onreadystatechange = () => {
+      if (xhr.status === 200 && xhr.readyState === 4) {
+        console.log(xhr.responseText)
+      }
+    }
+    xhr.send()
+  </script>
+
+</body>
+
+</html>
