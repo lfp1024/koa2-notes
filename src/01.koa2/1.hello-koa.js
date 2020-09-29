@@ -15,7 +15,6 @@ const app = new Koa()
 // koa2 写法
 app.use(async (ctx) => {
   // ctx 上下文，包含请求信息和响应信息
-
   // 响应数据
   ctx.body = 'Hello Koa2'
 })
