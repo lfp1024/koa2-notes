@@ -5,9 +5,34 @@ const erpApp = new Koa()
 const erpRouter = new Router({ prefix: '/erp' })
 
 let n = 0
+
 erpRouter.post('/spider_task', (ctx) => {
   const task = {
     "status": 1,
+    "tasks": [
+      {
+        "channel_id": 2, "channel_account_id": 6952, "id": 7007, "site": "IT", "task_id": 6, "task_code": "amazon_listing", "params": [], "request_id": "16099335532332427", "task_unique": "252088001260", "priority": "5"
+      },
+      { "channel_id": 2, "channel_account_id": 6953, "id": 7007, "site": "FR", "task_id": 6, "task_code": "amazon_listing", "params": [], "request_id": "16099335532406414", "task_unique": "393551662260", "priority": "5" },
+    ],
+    "user_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOjEsImV4cCI6MTYzMjIxMDk3MiwiYXVkIjoiIiwibmJmIjoxNjAwNjc0OTcyLCJpYXQiOjE2MDA2NzQ5NzIsImp0aSI6IjVmNjg1YzljNDcyNWQ5LjE0NDA1Mjg3IiwidXNlcl9pZCI6IjEiLCJyZWFsbmFtZSI6Ilx1OGQ4NVx1N2VhN1x1N2JhMVx1NzQwNlx1NTQ1OCIsInVzZXJuYW1lIjoiYWRtaW4iLCJzZXJ2ZXJfdHlwZSI6ZmFsc2V9.cb4f9799adeaa02107564c34dbf17c1c39ad9c2f1e49c756ef721892de612f0f",
+    "message": 1
+  }
+
+  ctx.body = task;
+  console.log('请求', ctx.request.url, n++)
+})
+
+erpRouter.post('/spider_receive', ctx => {
+  console.log('收到任务结果', ctx.request.body);
+  ctx.body = 'ok';
+})
+erpApp
+  .use(erpRouter.routes())
+  .listen(3000, () => { console.log('erp http listening on port', 3000) })
+
+
+/**
     "tasks": [
       {
         "id": 1093,
@@ -52,20 +77,4 @@ erpRouter.post('/spider_task', (ctx) => {
         "channel_account_id": 21,
       }
     ],
-    "user_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOjEsImV4cCI6MTYzMjIxMDk3MiwiYXVkIjoiIiwibmJmIjoxNjAwNjc0OTcyLCJpYXQiOjE2MDA2NzQ5NzIsImp0aSI6IjVmNjg1YzljNDcyNWQ5LjE0NDA1Mjg3IiwidXNlcl9pZCI6IjEiLCJyZWFsbmFtZSI6Ilx1OGQ4NVx1N2VhN1x1N2JhMVx1NzQwNlx1NTQ1OCIsInVzZXJuYW1lIjoiYWRtaW4iLCJzZXJ2ZXJfdHlwZSI6ZmFsc2V9.cb4f9799adeaa02107564c34dbf17c1c39ad9c2f1e49c756ef721892de612f0f",
-    "message": 1
-  }
-
-  ctx.body = task;
-  console.log('请求', ctx.request.url, n++)
-})
-
-erpRouter.post('/spider_receive', ctx => {
-  console.log('收到任务结果', ctx.request.body);
-  ctx.body = 'ok';
-})
-erpApp
-  .use(erpRouter.routes())
-  .listen(3000, () => { console.log('erp http listening on port', 3000) })
-
-
+ */
