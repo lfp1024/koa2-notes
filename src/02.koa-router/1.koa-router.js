@@ -27,8 +27,8 @@ router
 // GET传值和获取
 // URL http://localhost:3000/test/content?age=27&name=lfp
 router.get('/content', (ctx) => {
-  const { url } = ctx
-
+  const { header, headers, method, url, origin, originalUrl, href, path, query, querystring, host, hostname, fresh, stale, socket, protocol, secure, ip, ips, subdomains} = ctx
+  console.log(ctx.is(),ctx.accepts('json'),ctx.acceptsEncodings(),ctx.acceptsCharsets(),ctx.acceptsLanguages(),ctx.get('content-type'));
   // 从request对象中获取GET请求
   const { request } = ctx
   const reqQuery = request.query
@@ -37,14 +37,19 @@ router.get('/content', (ctx) => {
   const ctxQuery = ctx.query
   const ctxQuerystring = ctx.querystring
 
-  ctx.body = {
-    request,
-    url,
-    reqQuery,
-    reqQuerystring,
-    ctxQuery,
-    ctxQuerystring
+  // ctx.body = {
+  //   request,
+  //   url,
+  //   host, hostname,
+  //   reqQuery,
+  //   reqQuerystring,
+  //   ctxQuery,
+  //   ctxQuerystring
+  // }
+  let log = {
+    header, headers, method, url, origin, originalUrl, href, path, query, querystring, host, hostname, fresh, stale, socket, protocol, secure, ip, ips, subdomains
   }
+  console.log(log);
 })
 
 // 动态路由
